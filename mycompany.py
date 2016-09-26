@@ -17,8 +17,9 @@ class Mycompany():
 
             INSERT DATA{
                 GRAPH <http://mu.semte.ch/application> {
-                    default:MyCompany rdfs:label "MyCompanyName";
-                                        mu:uuid %s.
+                    default:MyCompany a default:Company;
+                                      rdfs:label "MyCompanyName";
+                                      mu:uuid %s.
 
                 }
             }

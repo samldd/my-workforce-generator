@@ -23,7 +23,7 @@ class Occupation:
             INSERT DATA{
                 GRAPH <http://mu.semte.ch/application> {
                     default:%s_%s a default:EmployeeFunction;
-                                  esco:Occupation <%s>;
+                                  esco:hasOccupation <%s>;
                                   default:startDate %s;
                                   mu:uuid %s.
                     default:%s default:function default:%s_%s.

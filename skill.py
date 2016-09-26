@@ -22,7 +22,7 @@ class Skill:
         INSERT DATA{
             GRAPH <http://mu.semte.ch/application> {
                 default:%s_%s a default:EmployeeSkill;
-                              esco:Skill <%s>;
+                              esco:hasSkill <%s>;
                               default:acquired %s;
                               mu:uuid %s.
                 default:%s default:hasSkill default:%s_%s.

@@ -4,8 +4,8 @@ from mycompany import Mycompany
 
 class Employee():
 
-    FRONTNAMES = ["Sam", "Arno", "Johan", "Nora", "Karel", "Aad", "Erica", "Vincent", "Jonathan", "Niels"]
-    LASTNAMES = ["Landuydt", "Versteden", "Kremer", "De Smedt", "Vandekeybus", "Fannes", "Maes", "Janssens"]
+    FRONTNAMES = ["Sam", "Arno", "Johan", "Nora", "Karel", "Aad", "Erica", "Vincent", "Jonathan", "Niels", "Jan", "Piet", "Brecht", "Yannick", "Cieltje", "Amber", "Katelijne", "Adriaan", "Charlotte"]
+    LASTNAMES = ["Landuydt", "Versteden", "Kremer", "De Smedt", "Vandekeybus", "Fannes", "Maes", "Janssens", "Van de bosch", "Billen", "Barbier", "De Bruyn", "Mertens", "Andries"]
 
     def __init__(self):
         """ Neem een willekeurige naam uit de front en last names en controlleer of
