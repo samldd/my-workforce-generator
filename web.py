@@ -30,6 +30,21 @@ def hirePerson():
     emp.persist()
     return emp.get_name() + " Is hired!"
 
+@app.route('/add-labels/')
+def label_concepts():
+    q = """
+    PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#>
+    PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+    INSERT {
+        GRAPH <http://mu.semte.ch/application> {
+            ?s skos:prefLabel ?text.
+        }
+    } WHERE {
+        ?s skosxl:prefLabel / skosxl:literalForm ?text.
+        FILTER (lang(?text) = "en")
+    }"""
+    helpers.update(q)
 
 def generate_employee():
     emp = Employee()

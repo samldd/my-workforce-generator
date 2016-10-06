@@ -13,8 +13,6 @@ class Occupation:
         self.uuid = helpers.generate_uuid()
 
     def persist(self):
-        helpers.log("************* DEBUG ********* ")
-        helpers.log(type(self.acquired))
         q = """
             prefix esco: <http://data.europa.eu/esco/model#>
             prefix default: <http://example.org/MyCompany/>
@@ -51,19 +49,20 @@ class Occupation:
                 prefix esco: <http://data.europa.eu/esco/model#>
                 prefix skosxl: <http://www.w3.org/2008/05/skos-xl#>
                 prefix skos: <http://www.w3.org/2004/02/skos/core#>
+                prefix dcterms: <http://purl.org/dc/terms/>
 
                 SELECT distinct (str(?lit2) as ?occupationLiteral) ?occ
                     WHERE{
-                        GRAPH <http://mu.semte.ch/application>{
-                            ?topNode a esco:Occupation.
-                            ?topNode skosxl:prefLabel ?label.
-                            ?label skosxl:literalForm ?lit.
-                            FILTER regex(str(?lit),"ICT development").
-                            ?occ skos:broader* ?topNode.
-                            ?occ skosxl:prefLabel ?label2.
-                            ?label2 skosxl:literalForm ?lit2.
-                            FILTER NOT EXISTS { ?o skos:broader ?occ }.
-                        }
+                        ?topNode a esco:Occupation.
+                        ?topNode skosxl:prefLabel ?label.
+                        ?label skosxl:literalForm ?lit.
+                        FILTER regex(str(?lit),"ICT implementation").
+                        ?occ skos:broader* ?topNode.
+                        ?occ skosxl:prefLabel ?label2.
+                        ?label2 skosxl:literalForm ?lit2.
+                        FILTER NOT EXISTS { ?o skos:broader ?occ }.
+                        ?skill dcterms:contributor ?SREF_SCK.
+                        filter (?SREF_SCK = <http://data.europa.eu/esco/iC.agent.SREF.11>).
                 }"""
             data = helpers.query(q)
             bindings = data["results"]["bindings"]

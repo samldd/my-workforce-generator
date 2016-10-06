@@ -21,6 +21,7 @@ class Employee():
         self.company = None
         self.occupation = None
         self.uuid = helpers.generate_uuid()
+        self.persisted = False
 
     def add_company(self, company):
         self.company = company
@@ -55,10 +56,13 @@ class Employee():
         bindings = data["results"]["bindings"]
         for b in bindings:
             name = b["employeeName"]["value"]
-            if name == front + " " + last: return False
+            if not name:
+                return False
         return True
 
     def persist(self):
+        if self.persisted:
+            return
         front = self.front
         last = self.last
         if not self.occupation or not self.company:
@@ -81,6 +85,7 @@ class Employee():
         self.occupation.persist()
         for s in self.skills:
             s.persist()
+        self.persisted = True
 
     def get_name(self):
         return self.front.replace(" ", "_") + "_" + self.last.replace(" ", "_")
